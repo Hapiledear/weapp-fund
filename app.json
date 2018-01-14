@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#dc3023",
+    "navigationBarTitleText": "养鸡场",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#626567",
+    "selectedColor": "#e9bb1d",
+    "backgroundColor": "#dc3023",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "我的基金"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "基金排行"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "基金助手"
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+<!--index.wxml-->
+<import src="/zanui-weapp/loadmore/index.wxml" />
+<import src="/zanui-weapp/dist/field/index.wxml" />
+
+<view class="container">
+  <view class="">
+    <template is="zan-loadmore" data="{{ loading: !hasSession }}"> </template>
+    <button wx:if="{{sessionLoadFail}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 手动获取 </button>
+
+      <view wx:if="{{hasSession}}" class="search flex-wrp">
+        <view class="search-left flex-item">
+          <image src="/icon/search.png"></image>
+          <input placeholder="基金公司、名称或代码" placeholder-class="search-placeholder" />
+        </view>
+        <view class="search-right flex-item" bindtap="upper">
+          <image src="/icon/lighting.png"></image>
+        </view>
+      </view>
+    <!-- 国内两大指数 -->
+    <view wx:if="{{dp_zhishu}}" class='dp-zhishu zan-panel'>
+      <p id="dp-zhishu " class="zan-font-12 zan-col-6 zan-c-{{dp_zhishu[0].color}}">
+        {{dp_zhishu[0].name}}:{{dp_zhishu[0].value}}
+      </p>
+      <p id="dp-zhishu " class="zan-font-12  zan-c-{{dp_zhishu[1].color}} zan-col-6 zan-span-6">
+        {{dp_zhishu[1].name}}:{{dp_zhishu[1].value}}
+      </p>
+    </view>
+    <template wx:if="{{!watchData}}" is="zan-loadmore" data="{{ nodata: true }}"></template>
+
+    <view wx:else>
+      <view wx:for="{{watchData}}" wx:for-item="data">
+        <view class="zan-card feed-item">
+          <!-- 卡片右侧详情描述 -->
+          <view class="zan-card__detail-row">
+            <view class="zan-card__right-col">
+
+            </view>
+            <view class="zan-card__left-col zan-ellipsis--l2">
+              <span class="zan-font-16 ">{{data.fName}}</span>
+              <span class="zan-font-12 zan-c-gray-dark">({{data.fCodef}})</span>
+            </view>
+          </view>
+          <!-- 昨日信息 -->
+          <view class="zan-card__detail-row zan-c-gray-darker">
+            <view class="zan-card__right-col ">
+              <span class="zan-font-14 zan-c-{{data.tml_color}}">{{data.tml_num}} </span>
+              <span class="zan-font-10 zan-c-{{data.tml_color}}"> {{data.tml_deg}}</span>
+            </view>
+            <view class="zan-card__left-col ">
+              昨日净值
+            </view>
+
+          </view>
+          <!-- 今日信息 -->
+          <view class="zan-card__detail-row ">
+            <view class="zan-card__right-col ">
+              <view class="zan-card__right-col ">
+                <span class="zan-font-16 zan-c-{{data.today_color}}">{{data.tday_num}} </span>
+                <span class="zan-font-12 zan-c-{{data.today_color}}"> {{data.tday_deg}}</span>
+              </view>
+            </view>
+            <view class="zan-card__left-col ">
+              今日预估
+            </view>
+          </view>
+        </view>
+        <hr class="zan-col-black"></hr>
+      </view>
+    </view>
+
+
+  </view>
+
+</view>
